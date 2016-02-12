@@ -1,0 +1,7 @@
+services:
+  entity_alias.default:
+    class: Drupal\entity_alias\EventSubscriber\EntityAliasRequsetSubscriber
+    arguments: []
+    tags:
+      - { name: event_subscriber }
+
