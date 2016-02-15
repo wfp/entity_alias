@@ -1,0 +1,13 @@
+entity_alias.settings:
+  type: sequence
+  label: 'Entity Alias settings'
+  sequence:
+    type: mapping
+    mapping:
+      entity_types:
+        entity_type:
+          label: 'Entity Type'
+          type: string
+        enabled:
+          label: 'Enabled'
+          type: boolean

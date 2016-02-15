@@ -33,6 +33,7 @@ class AliasPathProcessor implements InboundPathProcessorInterface {
     $request_uri = $request->getRequestUri();
     $pieces      = explode('-', $request_uri);
     $id          = end($pieces);
+
     if (is_numeric($id)) {
       $alias = \Drupal::service('path.alias_manager')
         ->getAliasByPath("/node/" . $id);

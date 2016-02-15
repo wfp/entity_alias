@@ -17,7 +17,9 @@
   "license": "GPL-2.0+",
   "homepage": "https://github.com/wfp/entity_alias",
   "minimum-stability": "dev",
-  "require": {},
+  "require": {
+    "drupal/pathauto": "8.1.0-alpha1"
+  },
   "require-dev": {
     "drupal/coder": "8.2.5",
     "andrewholgate/drupalstrict": "0.1.1",
