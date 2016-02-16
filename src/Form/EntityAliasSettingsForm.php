@@ -45,6 +45,8 @@ class EntityAliasSettingsForm extends ConfigFormBase {
     $config                  = $this->config('entity_alias.settings');
     $configured_entity_types = $config->get('entity_types');
 
+    $form[]['#prefix'] = t('<p> Content types checked here will be smart aliased.</p>');
+
     foreach ($content_types as $type_id => $content_type) {
       $default_value = 0;
       if (!empty($configured_entity_types[$type_id])) {
