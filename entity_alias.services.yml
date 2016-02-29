@@ -1,7 +1,6 @@
 services:
-  entity_alias.default:
-    class: Drupal\entity_alias\EventSubscriber\EntityAliasRequsetSubscriber
+  entity_alias.path_alias_processor:
+    class: Drupal\entity_alias\AliasPathProcessor
     arguments: []
     tags:
-      - { name: event_subscriber }
-
+      - { name: path_processor_inbound }
