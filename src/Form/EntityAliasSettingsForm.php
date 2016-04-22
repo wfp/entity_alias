@@ -87,12 +87,23 @@ class EntityAliasSettingsForm extends ConfigFormBase {
 
     $config = \Drupal::service('config.factory')
       ->getEditable('entity_alias.settings');
-    $submitted_values = [];
 
-    foreach ($content_types as $type_id => $content_type) {
-      $submitted_values[$type_id] = [
-        'entity_type' => $type_id,
-        'enabled' => $form_state->getValue($type_id),
+    $submitted_values = [];
+    foreach ($content_types as $type => $content_type) {
+      $is_enabled = $form_state->getValue($type);
+      if (!$is_enabled) {
+        $nids = \Drupal::entityQuery('node')
+          ->condition('type', $type)->execute();
+        if ($nids) {
+          foreach($nids as $nid) {
+            \Drupal::service('pathauto.alias_storage_helper')->deleteAll('node/' . $nid);
+          }
+        }
+      }
+
+      $submitted_values[$type] = [
+        'entity_type' => $type,
+        'enabled' => $is_enabled,
       ];
     }
 
