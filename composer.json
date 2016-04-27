@@ -1,8 +1,8 @@
 {
-  "name": "wfp/entity_alias",
+  "name": "wfp/smart_alias",
   "version": "0.0.1",
   "type": "drupal-module",
-  "description": "Entity Alias",
+  "description": "Smart alias",
   "authors": [
     {
       "name": "Otar Zakalashvili",

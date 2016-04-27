@@ -1,6 +1,0 @@
-services:
-  entity_alias.path_alias_processor:
-    class: Drupal\entity_alias\AliasPathProcessor
-    arguments: []
-    tags:
-      - { name: path_processor_inbound }

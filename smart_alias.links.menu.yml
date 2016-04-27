@@ -1,6 +1,6 @@
-entity_alias.settings:
+smart_alias.settings:
   title: 'Smart alias'
   parent: system.admin_config_search
   description: 'Configure smart alias.'
   position: left
-  route_name: entity_alias.entity_alias_settings_form
+  route_name: smart_alias.settings

@@ -1,0 +1,9 @@
+smart_alias.settings:
+  path: '/admin/config/search/path/smart-alias'
+  defaults:
+    _form: '\Drupal\smart_alias\Form\SmartAliasSettingsForm'
+    _title: 'Smart alias settings'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

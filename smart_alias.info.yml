@@ -1,0 +1,7 @@
+name: Smart alias
+type: module
+description: Automatically generate aliases for selected entities.
+core: 8.x
+configure: smart_alias.settings
+dependencies:
+ - pathauto

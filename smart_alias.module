@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Smart alias module which takes care of setting aliased path on presave hook.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_help().
+ */
+function smart_alias_help($route_name, RouteMatchInterface $route_match) {
+  if ($route_name === 'help.page.smart_alias') {
+    $output = '<p>' . t('Tool for redirecting entities to its aliases by id found in url.') . '</p>';
+    return $output;
+  }
+}
+
+/**
+ * Implements hook_pathauto_alias_alter().
+ */
+/*
+function smart_alias_pathauto_alias_alter(&$alias, array &$context) {
+  $type = $context['data']['node']->getType();
+  $entity_types = \Drupal::config('entity_alias.settings')
+    ->get('entity_types');
+  $entity_types_ids = array_keys($entity_types);
+  if (in_array($type, $entity_types_ids) && $entity_types[$type]['enabled']) {
+    $nid = $context['data']['node']->id();
+    $alias .= '-' . $nid;
+  }
+}
+*/
+
+function smart_alias_node_presave(EntityInterface $node) {
+
+}

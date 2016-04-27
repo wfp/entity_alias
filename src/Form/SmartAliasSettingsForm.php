@@ -2,28 +2,28 @@
 
 /**
  * @file
- * Contains \Drupal\entity_alias\Form\EntityAliasSettingsForm.
+ * Contains \Drupal\smart_alias\Form\SmartAliasSettingsForm.
  */
 
-namespace Drupal\entity_alias\Form;
+namespace Drupal\smart_alias\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 
 /**
- * Class EntityAliasSettingsForm.
+ * Class SmartAliasSettingsForm.
  *
- * @package Drupal\entity_alias\Form
+ * @package Drupal\smart_alias\Form
  */
-class EntityAliasSettingsForm extends ConfigFormBase {
+class SmartAliasSettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
    */
   protected function getEditableConfigNames() {
     return [
-      'entity_alias.settings',
+      'smart_alias.settings',
     ];
   }
 
@@ -32,7 +32,7 @@ class EntityAliasSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'entity_alias_settings_form';
+    return 'smart_alias_settings_form';
   }
 
 
@@ -40,27 +40,25 @@ class EntityAliasSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $content_types = \Drupal::service('entity.manager')
-      ->getStorage('node_type')
-      ->loadMultiple();
-    $config = $this->config('entity_alias.settings');
+    $content_types = \Drupal::service('entity.manager')->getStorage('node_type')->loadMultiple();
+    $config = $this->config('smart_alias.settings');
     $configured_entity_types = $config->get('entity_types');
 
     $form[]['#prefix'] = t('<p>Smart alias uses @pathauto</p><p>Content types checked here will be smart aliased.</p>', [
-      '@pathauto' => \Drupal::l('pathauto', Url::fromRoute('pathauto.settings.form')),
+      '@pathauto' => \Drupal::l('pathauto', Url::fromRoute('entity.pathauto_pattern.collection')),
     ]);
 
-    foreach ($content_types as $type_id => $content_type) {
+    foreach ($content_types as $type => $content_type) {
       $default_value = 0;
-      if (!empty($configured_entity_types[$type_id])) {
-        $default_value = $configured_entity_types[$type_id]['enabled'];
+      if (!empty($configured_entity_types[$type])) {
+        $default_value = $configured_entity_types[$type]['enabled'];
       }
 
-      $form[$type_id] = array(
+      $form[$type] = [
         '#type' => 'checkbox',
         '#title' => $content_type->label(),
         '#default_value' => $default_value,
-      );
+      ];
     }
 
     return parent::buildForm($form, $form_state);
@@ -85,10 +83,9 @@ class EntityAliasSettingsForm extends ConfigFormBase {
       ->getStorage('node_type')
       ->loadMultiple();
 
-    $config = \Drupal::service('config.factory')
-      ->getEditable('entity_alias.settings');
+    $config = $this->config('smart_alias.settings');
 
-    $submitted_values = [];
+    $values = [];
     foreach ($content_types as $type => $content_type) {
       $is_enabled = $form_state->getValue($type);
       if (!$is_enabled) {
@@ -101,14 +98,13 @@ class EntityAliasSettingsForm extends ConfigFormBase {
         }
       }
 
-      $submitted_values[$type] = [
+      $values[$type] = [
         'entity_type' => $type,
         'enabled' => $is_enabled,
       ];
     }
 
-    $config->set('entity_types', $submitted_values)->save();
-
+    $config->set('entity_types', $values)->save();
   }
 
 }
