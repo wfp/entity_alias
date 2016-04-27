@@ -27,7 +27,6 @@ class SmartAliasSettingsForm extends ConfigFormBase {
     ];
   }
 
-
   /**
    * {@inheritdoc}
    */
@@ -35,14 +34,13 @@ class SmartAliasSettingsForm extends ConfigFormBase {
     return 'smart_alias_settings_form';
   }
 
-
   /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $content_types = \Drupal::service('entity.manager')->getStorage('node_type')->loadMultiple();
     $config = $this->config('smart_alias.settings');
     $configured_entity_types = $config->get('entity_types');
+    $content_types = \Drupal::service('entity.manager')->getStorage('node_type')->loadMultiple();
 
     $form[]['#prefix'] = t('<p>Smart alias uses @pathauto</p><p>Content types checked here will be smart aliased.</p>', [
       '@pathauto' => \Drupal::l('pathauto', Url::fromRoute('entity.pathauto_pattern.collection')),
@@ -64,35 +62,22 @@ class SmartAliasSettingsForm extends ConfigFormBase {
     return parent::buildForm($form, $form_state);
   }
 
-
-  /**
-   * {@inheritdoc}
-   */
-  public function validateForm(array &$form, FormStateInterface $form_state) {
-    parent::validateForm($form, $form_state);
-  }
-
-
   /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     parent::submitForm($form, $form_state);
-
-    $content_types = \Drupal::service('entity.manager')
-      ->getStorage('node_type')
-      ->loadMultiple();
-
-    $config = $this->config('smart_alias.settings');
-
     $values = [];
+    $config = $this->config('smart_alias.settings');
+    $content_types = \Drupal::service('entity.manager')->getStorage('node_type')->loadMultiple();
+
     foreach ($content_types as $type => $content_type) {
       $is_enabled = $form_state->getValue($type);
       if (!$is_enabled) {
         $nids = \Drupal::entityQuery('node')
           ->condition('type', $type)->execute();
         if ($nids) {
-          foreach($nids as $nid) {
+          foreach ($nids as $nid) {
             \Drupal::service('pathauto.alias_storage_helper')->deleteAll('node/' . $nid);
           }
         }
