@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Smart alias module which takes care of setting aliased path on presave hook.
+ * Smart alias module which takes care of redirecting to aliased path.
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
