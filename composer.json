@@ -1,6 +1,6 @@
 {
   "name": "wfp/smart_alias",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "type": "drupal-module",
   "description": "Smart alias",
   "authors": [
@@ -8,6 +8,11 @@
       "name": "Otar Zakalashvili",
       "email": "oto.zakalashvili@gmail.com",
       "homepage": "http://otarza.space"
+    },
+    {
+      "name": "Lasha Badashvili",
+      "email": "lashab@picktek.com",
+      "homepage": "https://github.com/lashab"
     }
   ],
   "keywords": [
