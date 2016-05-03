@@ -1,6 +1,6 @@
 smart_alias.settings:
   type: sequence
-  label: 'Smart alias settings'
+  label: 'Smart Alias settings'
   sequence:
     type: mapping
     mapping:

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Installation functions for Smart alias module.
+ * Installation functions for Smart Alias module.
  */
 
 use Drupal\Core\Url;
