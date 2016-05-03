@@ -58,7 +58,7 @@ function smart_alias_form_alter(&$form, FormStateInterface $form_state, $form_id
       $types = \Drupal::config('smart_alias.settings')->get('entity_types');
       foreach($types as $type) {
         if ($type['enabled']) {
-          $form['pattern_container']['bundles']['#options'][$type['entity_type']] .= ' - ' . t('<strong>configured to use Entity Alias</strong>');
+          $form['pattern_container']['bundles']['#options'][$type['entity_type']] .= ' - ' . t('<strong>configured to use Smart Alias (will append the node ID to the pattern)</strong>');
         }
       }
     }
