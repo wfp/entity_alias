@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Smart alias module which takes care of redirecting to aliased path.
+ * Smart Alias module which takes care of redirecting to aliased path.
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 function smart_alias_help($route_name, RouteMatchInterface $route_match) {
   if ($route_name === 'help.page.smart_alias') {
-    $output = '<p>' . t('Redirecting entities to its aliases by id.') . '</p>';
+    $output = '<p>' . t('Redirect entities to their alias with pending node ID.') . '</p>';
     return $output;
   }
 }

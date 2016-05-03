@@ -1,4 +1,4 @@
-name: Smart alias
+name: Smart Alias
 type: module
 description: Automatically generate aliases for selected entities.
 core: 8.x

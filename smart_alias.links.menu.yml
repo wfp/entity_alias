@@ -1,6 +1,6 @@
 smart_alias.settings:
-  title: 'Smart alias'
+  title: 'Smart Alias'
   parent: system.admin_config_search
-  description: 'Configure smart alias.'
+  description: 'Configure Smart Alias.'
   position: left
   route_name: smart_alias.settings

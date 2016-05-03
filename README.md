@@ -1,9 +1,11 @@
-# Entity Alias module for Drupal 8
+# Smart Alias module for Drupal 8
 
 ## Smart Aliasing
-This module does smart aliasing for content types selected by admin under Entity Alias settings form.
 
-## How this module works?
+This module does smart aliasing for content types selected by admin under Smart Alias settings form.
+
+## How does this module works?
+
 This module appends node id to whatever path alias node has like this `{path-alias}-{node-id}`.
 This means every node's url will contain `-nid` at the and of the url.
 
@@ -17,10 +19,12 @@ Here is an example:
 
 
 ## How to use
+
 * Install module as a standard Drupal module.
-* Enable smart aliasing for content types under `/admin/config/entity_alias/entityaliassettings`
+* Enable smart aliasing for content types under `/admin/config/search/path/smart-alias`
 
 ## Dependencies
+
 This module depends on [Pathauto](https://www.drupal.org/project/pathauto) Drupal module
 
 
