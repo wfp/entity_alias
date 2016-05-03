@@ -2,9 +2,10 @@
 
 /**
  * @file
- * Smart alias module which takes care of redirecting to aliased path.
+ * Smart alias module.
  */
 
+use Drupal\Core\Url;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -14,7 +15,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 function smart_alias_help($route_name, RouteMatchInterface $route_match) {
   if ($route_name === 'help.page.smart_alias') {
-    $output = '<p>' . t('Redirecting entities to its aliases by id.') . '</p>';
+    $output = '<p>' . t('Redirecting entities to its aliases using id.') . '</p>';
     return $output;
   }
 }
@@ -28,5 +29,21 @@ function smart_alias_node_insert(EntityInterface $node) {
   if (isset($types[$entity_type]) && $types[$entity_type]['enabled']) {
     $redirect = new RedirectResponse($node->label() . '-' . $node->id());
     $redirect->send();
+  }
+}
+
+/**
+ * Implements hook_alias_menu_local_tasks_alter().
+ */
+function smart_alias_menu_local_tasks_alter(&$data, $route_name) {
+  if(isset($data['tabs'][0]['pathauto.patterns.form'])) {
+    $data['tabs'][0]['pathauto.smart_alias'] = [
+      '#theme' => 'menu_local_task',
+      '#link' => [
+        'title' => 'Smart alias',
+        'url' => Url::fromRoute('smart_alias.settings'),
+      ],
+      '#weight' => 50,
+    ];
   }
 }
