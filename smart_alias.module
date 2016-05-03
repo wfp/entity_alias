@@ -9,6 +9,7 @@ use Drupal\Core\Url;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_help().
@@ -45,5 +46,21 @@ function smart_alias_menu_local_tasks_alter(&$data, $route_name) {
       ],
       '#weight' => 50,
     ];
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function smart_alias_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  switch ($form_id) {
+    case 'pathauto_pattern_form': {
+      $types = \Drupal::config('smart_alias.settings')->get('entity_types');
+      foreach($types as $type) {
+        if ($type['enabled']) {
+          $form['pattern_container']['bundles']['#options'][$type['entity_type']] .= ' - ' . t('<strong>configured to use Entity Alias</strong>');
+        }
+      }
+    }
   }
 }
