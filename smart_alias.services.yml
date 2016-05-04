@@ -1,0 +1,6 @@
+services:
+  smart_alias.path_alias_processor:
+    class: Drupal\smart_alias\AliasPathProcessor
+    arguments: []
+    tags:
+      - { name: path_processor_inbound }

@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Installation functions for Smart Alias module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_install().
+ */
+function smart_alias_install() {
+  global $base_url;
+  $url = new Url('smart_alias.settings');
+  drupal_set_message(t('You will need to @configure to use with Smart Alias.', [
+    '@configure' => \Drupal::l('configure the content types', $url->fromUri($base_url . '/admin/config/search/path/smart-alias')),
+  ]));
+}

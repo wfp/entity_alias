@@ -1,6 +1,6 @@
-entity_alias.settings:
+smart_alias.settings:
   type: sequence
-  label: 'Entity Alias settings'
+  label: 'Smart Alias settings'
   sequence:
     type: mapping
     mapping:

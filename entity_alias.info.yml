@@ -1,9 +1,0 @@
-name: Entity Alias
-type: module
-description: Entity Alias
-core: 8.x
-package: Entity
-configure: entity_alias.entity_alias_settings_form
-
-dependencies:
- - pathauto
