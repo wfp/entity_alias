@@ -1,0 +1,5 @@
+smart_alias.settings:
+  title: 'Smart alias'
+  route_name: smart_alias.settings
+  base_route: path.admin_overview
+  weight: 50
