@@ -34,22 +34,6 @@ function smart_alias_node_insert(EntityInterface $node) {
 }
 
 /**
- * Implements hook_alias_menu_local_tasks_alter().
- */
-function smart_alias_menu_local_tasks_alter(&$data, $route_name) {
-  if(isset($data['tabs'][0]['pathauto.patterns.form'])) {
-    $data['tabs'][0]['pathauto.smart_alias'] = [
-      '#theme' => 'menu_local_task',
-      '#link' => [
-        'title' => 'Smart alias',
-        'url' => Url::fromRoute('smart_alias.settings'),
-      ],
-      '#weight' => 50,
-    ];
-  }
-}
-
-/**
  * Implements hook_form_alter().
  */
 function smart_alias_form_alter(&$form, FormStateInterface $form_state, $form_id) {

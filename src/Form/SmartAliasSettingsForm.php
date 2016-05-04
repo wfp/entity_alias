@@ -42,10 +42,6 @@ class SmartAliasSettingsForm extends ConfigFormBase {
     $configured_entity_types = $config->get('entity_types');
     $content_types = \Drupal::service('entity.manager')->getStorage('node_type')->loadMultiple();
 
-    $form[]['#prefix'] = t('<p>Smart Alias uses @pathauto</p><p>Content types checked here will be smart aliased.</p>', [
-      '@pathauto' => \Drupal::l('pathauto', Url::fromRoute('entity.pathauto_pattern.collection')),
-    ]);
-
     foreach ($content_types as $type => $content_type) {
       $default_value = 0;
       if (!empty($configured_entity_types[$type])) {
